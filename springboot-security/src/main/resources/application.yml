@@ -1,0 +1,17 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: springboot-security
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_security?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

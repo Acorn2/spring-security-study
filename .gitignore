@@ -1,0 +1,9 @@
+# Project exclude paths
+/custom-authentication/target/
+/springboot-jwt/target/
+/springboot-redis/target/
+/springboot-security/target/
+/springboot-security-inmemory/target/
+/springboot-security-userdatails/target/
+/springmvc-security/target/
+/springmvc-session/target/
