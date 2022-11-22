@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.msdn.security.common.mybatisPlus.config.MybatisPlusAutoConfiguration

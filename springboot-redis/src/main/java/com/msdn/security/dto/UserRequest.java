@@ -1,4 +1,4 @@
-package com.msdn.security.model;
+package com.msdn.security.dto;
 
 import lombok.Data;
 
@@ -12,4 +12,5 @@ public class UserRequest {
 
   private String username;
   private String password;
+  private String authCode;
 }

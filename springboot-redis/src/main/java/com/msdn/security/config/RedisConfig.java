@@ -22,20 +22,21 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfig {
 
   @Bean
-  @SuppressWarnings("all")
   public RedisTemplate<String, Object> redisTemplate(
       RedisConnectionFactory redisConnectionFactory) {
-    RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+    RedisTemplate<String, Object> template = new RedisTemplate<>();
     template.setConnectionFactory(redisConnectionFactory);
 
-    Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(
+    // 创建JSON序列化器
+    Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(
         Object.class);
-    ObjectMapper om = new ObjectMapper();
-    om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL); //已过期
-    om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+    //必须设置，否则无法将JSON转化为对象，会转化成Map类型
+    objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,
         ObjectMapper.DefaultTyping.NON_FINAL);
-    jackson2JsonRedisSerializer.setObjectMapper(om);
+    jackson2JsonRedisSerializer.setObjectMapper(objectMapper);
+
     StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 
     // key采用String的序列化方式

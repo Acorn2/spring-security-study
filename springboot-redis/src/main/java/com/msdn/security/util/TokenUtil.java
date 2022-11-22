@@ -14,6 +14,9 @@ import org.springframework.util.StringUtils;
  */
 public class TokenUtil {
 
+  private TokenUtil() {
+  }
+
   public static String getTokenFromAuthorizationHeader(HttpServletRequest request) {
     String authorization = request.getHeader("Authorization");
     Pattern authorizationPattern = Pattern
@@ -25,8 +28,6 @@ public class TokenUtil {
     }
     Matcher matcher = authorizationPattern.matcher(authorization);
     if (!matcher.matches()) {
-//      BearerTokenError error = BearerTokenErrors.invalidToken("Bearer token is malformed");
-//      throw new OAuth2AuthenticationException(error);
       return null;
     }
     return matcher.group("token");//从上面的正则表达式中获取token
